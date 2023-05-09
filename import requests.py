@@ -1,6 +1,19 @@
 import requests
+import sys
 
-r = requests.get('https://api.nationalize.io/?name=michael')
+url = "https://api.nationalize.io/?name="
 
-print(r.status_code)
-print(r.json())
+
+
+while True:
+    name = input("Enter a name: ")
+
+    if name == str(1):
+        print("quiting...")
+        sys.exit(0)
+    r = requests.get(url + name)
+
+    print("Server Response: " + str(r.status_code))
+    print(r.json())
+
+    
