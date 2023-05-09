@@ -3,8 +3,6 @@ import sys
 
 url = "https://api.nationalize.io/?name="
 
-
-
 while True:
     name = input("Enter a name: ")
 
@@ -14,6 +12,5 @@ while True:
     r = requests.get(url + name)
 
     print("Server Response: " + str(r.status_code))
-    print(r.json())
-
-    
+    for i in r.json()["country"]:
+        print(i["country_id"] + " : " + str(i["probability"]))
