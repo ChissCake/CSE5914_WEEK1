@@ -6,7 +6,8 @@ base_uri = "https://api.nationalize.io/?"
 while True:
     name = input("Enter a name: ")
     params = {"name": f"{name}"}
-    if name == str(1):
+    
+    if name == 'exit':
         print("quiting...")
         sys.exit(0)
     r = requests.get(base_uri, params=params)
