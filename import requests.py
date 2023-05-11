@@ -3,7 +3,7 @@ import sys
 
 base_uri = "https://api.nationalize.io/?"
 
-countries_url = "http://www.geognos.com/api/en/countries/flag/"
+countries_url = "https://flagsapi.com/"
 
 # Creating an HTML file
 Func = open("output.html","w")
@@ -20,16 +20,13 @@ while True:
     r = requests.get(base_uri, params=params)
 
     print("Server Response: " + str(r.status_code))
-    Func.write("<p>"+name+"</p>\n")
+    Func.write("\n<p>"+name+"</p>\n")
     for i in r.json()["country"]:
         print(i["country_id"] + " : " + str(i["probability"]))
-        flag = countries_url + i["country_id"] + ".html"
-        flag_img = requests.get(flag)
-
-        #save(flag_img, "png")
-        #print(flag_img.text)
-        #Func.write("<img src=" + flag_img + "/>")
-        Func.write("<p> " + i["country_id"] + " : " + str(i["probability"]) + "</p>\n")
+        flag = countries_url + i["country_id"] + "/flat/64.png"
+        #flag_img = requests.get(flag)
+        #Func.write("<img src=" + flag + "/>")
+        Func.write("<p> <img src=" + flag + "/> " + i["country_id"] + " : " + str(i["probability"]) + "</p>\n")
     
     # Saving the data into the HTML file
 Func.write("</html>")    
